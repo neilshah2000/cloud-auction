@@ -1,0 +1,4 @@
+POST http://3.92.177.227:9999/authentication/register/
+Content-Type: application/json
+
+{"username": "neilThursday", "password": "1234"}

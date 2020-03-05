@@ -17,8 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from movies.views import MoviesViewSet
+from auction.views import AuctionItemViewSet, BidViewSet
+
 router = DefaultRouter()
+# create url endpoints
 router.register('movies', MoviesViewSet)
+router.register('auctionItem', AuctionItemViewSet)
+router.register('bid', BidViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

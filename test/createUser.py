@@ -2,7 +2,7 @@ import requests
 
 url = "http://localhost:9999/authentication/register/"
 frodo = {
-    'username': 'frodo',
+    'username': 'test',
     'password':'1234'
 }
 frodo_response = requests.post(url, data = frodo)

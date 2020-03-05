@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '3.92.177.227',
-    'localhost'
+    'localhost',
+    '172.31.80.164'
 ]
 
 
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework', # The REST API
     'users',
     'movies',
+    'auction',
 ]
 
 MIDDLEWARE = [
