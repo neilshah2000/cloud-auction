@@ -17,17 +17,19 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from movies.views import MoviesViewSet
-from auction.views import AuctionItemViewSet, BidViewSet
+from auction.views import AuctionItemViewSet, BidViewSet, current_datetime
 
 router = DefaultRouter()
 # create url endpoints
 router.register('movies', MoviesViewSet)
 router.register('auctionItem', AuctionItemViewSet)
 router.register('bid', BidViewSet)
+# router.register('date', current_datetime)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('authentication/', include('users.urls')),
     path('v1/', include(router.urls)), # Version 1 of our API
+    path('date/', current_datetime)
 ]
