@@ -31,5 +31,6 @@ urlpatterns = [
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('authentication/', include('users.urls')),
     path('v1/', include(router.urls)), # Version 1 of our API
-    path('date/', current_datetime)
+    path('date/', current_datetime),
+    path('newAuction/', include('auction.urls')),
 ]
