@@ -1,5 +1,7 @@
-POST http://3.92.177.227:9999/authentication/token/
+POST http://127.0.0.1:9999/authentication/token/
 Content-Type: application/json
 
-{"username": "neilThursday", "password": "1234"}
-
+{
+    "username": "Trousers",
+    "password": "Holes in the legs"
+}
