@@ -1,6 +1,6 @@
 import requests
 
-url = 'http://127.0.0.1:9999/authentication/token/'
+url = 'http://172.31.80.164:9999/authentication/token/'
 user = {'username': 'bilbo', 'password': '1234'}
 response = requests.post(url, data = user)
 

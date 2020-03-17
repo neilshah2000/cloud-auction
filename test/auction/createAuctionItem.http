@@ -1,5 +1,5 @@
-POST http://localhost:9999/v1/auctionItem/
-Authorization: 'Bearer ba9iEvYGlTcP6M8jUGeB6gNvvzY7ux'
+POST http://172.31.80.164:9999/v1/auctionItem/
+Authorization: 'Bearer TkqC8hp1N0VllPbOOhyQZpazkuNWeC'
 Content-Type: application/json
 
 {
