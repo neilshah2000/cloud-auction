@@ -4,8 +4,12 @@ from rest_framework import viewsets
 from rest_framework.renderers import JSONRenderer
 from .models import AuctionItem, Bid
 from .serializers import AuctionItemSerializer, BidSerializer
-
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import AllowAny
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView
 
 # https://www.django-rest-framework.org/api-guide/viewsets/
@@ -19,17 +23,6 @@ class BidViewSet(viewsets.ModelViewSet):
     queryset = Bid.objects.all()
     serializer_class = BidSerializer
 
-    # @action(detail=True, methods=['post'])
-    # def bidOnItem(self, request, pk=None):
-    #     print(request.user)
-
-class BidCreate(LoginRequiredMixin, CreateView):
-    model = Bid
-    fields = ['amount', 'item']
-
-    def form_valid(self, form):
-        form.instance.created_by = self.request.user
-        return super().form_valid(form)
 
 
 from django.http import HttpResponse
@@ -57,3 +50,12 @@ def getBidsForItem(request, itemId):
     serializer = BidSerializer(some, many=True)
     json = JSONRenderer().render(serializer.data)
     return HttpResponse(json)
+
+@api_view(['POST'])
+@login_required
+def createBid(request):
+    bid = BidSerializer(data=request.data)
+    if(bid.is_valid()):
+        bid.save()
+        return Response(bid.data)
+    return Response(bid.errors, status=status.HTTP_400_BAD_REQUEST)
