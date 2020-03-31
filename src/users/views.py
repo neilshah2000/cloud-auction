@@ -7,12 +7,12 @@ import requests
 from .serializers import CreateUserSerializer
 
 
-CLIENT_ID = 'o7LpX7IeaFYIDA2rC9C9JrrTV1YigQycBcTqBDWw'
-CLIENT_SECRET = 'hUDqunBkhAG6I5amAWikC5h4njpqqC6o05p1qRJLklM295RluMHIa508hZ2j3PqtR1rTVYt2v9SoZ27hYfkJY5cQ5ihj8YxHh7xs7jT885fiH1VysC1hHcf6lc9kf3nX'
+CLIENT_ID = 'PCDrRc1Ur6cAbgsIx3wwzeYTaXna0x4JxFOrzn1q'
+CLIENT_SECRET = 'n2LdjoHz1etXAfq9tMhGngcduC5O3mH5Z9WvvJ5kuT5KwVHFynAL3A35oUYTTKdiYniy3XzgRmZwdY4sGlY8B9h6KTXHggSqZDAvYnoxGSrHQcML1DvkYDya6Ow7pjXU'
 
 
-IP_token = 'http://172.31.80.164:9999/o/token/'
-IP_revoke_token ='http://172.31.80.164:9999/o/revoke_token/'
+IP_token = 'http://172.31.47.107:9999/o/token/'
+IP_revoke_token ='http://172.31.47.107:9999/o/revoke_token/'
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def register(request):

@@ -1,7 +1,7 @@
-POST http://172.31.80.164:9999/authentication/register/
+POST http://172.31.47.107:9999/authentication/register/
 Content-Type: application/json
 
 {
-    "username": "Trousers",
+    "username": "anotheruserokasdfjl",
     "password": "Holes in the legs"
 }
