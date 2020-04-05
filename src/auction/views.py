@@ -65,7 +65,7 @@ def createBid(request):
 @login_required
 def createAuction(request):
     auctionItem = AuctionItemSerializer(data=request.data)
-    if auctionItem.is_valid():
+    if auctionItem.is_valid() and canBidOnItem(request):
         auctionInDB = auctionItem.save()
         createEndAuctionJob(auctionInDB.id, schedule=auctionInDB.endDate)
         return Response(auctionItem.data)
@@ -73,3 +73,8 @@ def createAuction(request):
 
 def endAuction():
     print('got to end the auction')
+
+def canBidOnItem(request):
+    # check if bid user is not the same as auction user
+    # check if auction has not ended
+    return True
