@@ -6,7 +6,7 @@ class AuctionItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AuctionItem
-        fields = ('id', 'title', 'description', 'price', 'endDate')
+        fields = ('id', 'title', 'description', 'price', 'endDate', 'ended', 'winner')
 
 
 class BidSerializer(serializers.ModelSerializer):

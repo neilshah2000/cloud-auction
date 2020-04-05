@@ -11,6 +11,7 @@ from rest_framework.permissions import AllowAny
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView
+from .tasks import createEndAuctionJob
 
 # https://www.django-rest-framework.org/api-guide/viewsets/
 
@@ -55,7 +56,20 @@ def getBidsForItem(request, itemId):
 @login_required
 def createBid(request):
     bid = BidSerializer(data=request.data)
-    if(bid.is_valid()):
+    if bid.is_valid():
         bid.save()
         return Response(bid.data)
     return Response(bid.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+@login_required
+def createAuction(request):
+    auctionItem = AuctionItemSerializer(data=request.data)
+    if auctionItem.is_valid():
+        auctionInDB = auctionItem.save()
+        createEndAuctionJob(auctionInDB.id, schedule=auctionInDB.endDate)
+        return Response(auctionItem.data)
+    return Response(auctionItem.errors, status=status.HTTP_400_BAD_REQUEST)
+
+def endAuction():
+    print('got to end the auction')
