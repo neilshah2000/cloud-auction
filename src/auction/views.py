@@ -65,10 +65,7 @@ def createBid(request):
                 return Response(bid.data)
             else: return Response({'detail': 'The auction has ended'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            response_data = { 
-                'detail': 'User can not bid on thier own auction'
-            }
-            return Response(response_data, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'detail': 'User can not bid on thier own auction'}, status=status.HTTP_400_BAD_REQUEST)
     return Response(bid.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
