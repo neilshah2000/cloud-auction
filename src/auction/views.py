@@ -1,5 +1,7 @@
 from django.shortcuts import render
-
+import json
+from datetime import datetime
+from django.utils import timezone
 from rest_framework import viewsets
 from rest_framework.renderers import JSONRenderer
 from .models import AuctionItem, Bid
@@ -57,15 +59,23 @@ def getBidsForItem(request, itemId):
 def createBid(request):
     bid = BidSerializer(data=request.data)
     if bid.is_valid():
-        bid.save()
-        return Response(bid.data)
+        if canBidOnItem(request):
+            if auctionNotFinished(request):
+                bid.save()
+                return Response(bid.data)
+            else: return Response({'detail': 'The auction has ended'}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            response_data = { 
+                'detail': 'User can not bid on thier own auction'
+            }
+            return Response(response_data, status=status.HTTP_400_BAD_REQUEST)
     return Response(bid.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 @login_required
 def createAuction(request):
     auctionItem = AuctionItemSerializer(data=request.data)
-    if auctionItem.is_valid() and canBidOnItem(request):
+    if auctionItem.is_valid():
         auctionInDB = auctionItem.save()
         createEndAuctionJob(auctionInDB.id, schedule=auctionInDB.endDate)
         return Response(auctionItem.data)
@@ -74,7 +84,24 @@ def createAuction(request):
 def endAuction():
     print('got to end the auction')
 
+# check if bid user is not the same as auction user
 def canBidOnItem(request):
-    # check if bid user is not the same as auction user
-    # check if auction has not ended
-    return True
+    bid = BidSerializer(data=request.data)
+    if bid.is_valid():
+        auctionItemId = bid.data['item']
+        bidAuction = AuctionItem.objects.get(pk=auctionItemId)
+        auctionUser = bidAuction.created_by_id
+        bidUser = request.user.id
+        return auctionUser != bidUser
+    return False
+
+# check if auction has not ended
+def auctionNotFinished(request):
+    bid = BidSerializer(data=request.data)
+    if bid.is_valid():
+        auctionItemId = bid.data['item']
+        bidAuction = AuctionItem.objects.get(pk=auctionItemId)
+        endDate = bidAuction.endDate
+        now = timezone.now()
+        return endDate > now
+    return False

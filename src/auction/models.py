@@ -9,6 +9,7 @@ class AuctionItem(models.Model):
     endDate = models.DateTimeField()
     ended = models.BooleanField(default=False)
     winner = models.ForeignKey('Bid', on_delete=models.CASCADE, null=True)
+    created_by = models.ForeignKey('auth.User', default=get_current_user, on_delete=models.CASCADE, null=True)
 
 class Bid(models.Model):
     amount = models.FloatField()
