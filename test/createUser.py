@@ -1,6 +1,6 @@
 import requests
 
-url = "http://localhost:9999/authentication/register/"
+url = "http://172.31.47.107:9999/authentication/register/"
 frodo = {
     'username': 'test',
     'password':'1234'

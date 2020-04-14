@@ -7,8 +7,8 @@ import requests
 from .serializers import CreateUserSerializer
 
 
-CLIENT_ID = 'PCDrRc1Ur6cAbgsIx3wwzeYTaXna0x4JxFOrzn1q'
-CLIENT_SECRET = 'n2LdjoHz1etXAfq9tMhGngcduC5O3mH5Z9WvvJ5kuT5KwVHFynAL3A35oUYTTKdiYniy3XzgRmZwdY4sGlY8B9h6KTXHggSqZDAvYnoxGSrHQcML1DvkYDya6Ow7pjXU'
+CLIENT_ID = 'UjHGNXR1QL1xcz1hqzWDpQYZnjbRT5KJX96t4xQL'
+CLIENT_SECRET = 'NIEapuwf7PX0qF5B8laufp60CAQHI0KWW6wsywKjnh9Xb5qyLKTPzGoLzk4bcFD46HCnm3MlVWi4tN5pKeFip33qtXpiVATcIDfM1ScUEv4LbG4s2dQZBMkeYQ43QqZL'
 
 
 IP_token = 'http://172.31.47.107:9999/o/token/'
