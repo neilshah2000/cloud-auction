@@ -1,12 +1,6 @@
 import requests
 import json
-
-def loginUser(user):
-    url = 'http://172.31.47.107:9999/authentication/token/'
-    response = requests.post(url, data = user)
-    json_response = response.json()
-    print(json_response['access_token'])
-    return json_response['access_token']
+from login import loginUser
 
 users = [
     {'username': 'olga', 'password': 'olga'},
@@ -15,4 +9,5 @@ users = [
 ]
 
 for user in users:
-    loginUser(user)
+    token = loginUser(user)
+    print(user['username'] + ' is logged in with token ' + token)

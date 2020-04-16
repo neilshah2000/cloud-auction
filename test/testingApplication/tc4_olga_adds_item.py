@@ -9,12 +9,12 @@ def addAuction(auctionItem, token):
     print(json_response)
 
 auctionItem1 = {
-    "title": "monday item",
-    "endDate": "2020-04-06T22:00:00Z",
+    "title": "Thursday item",
+    "endDate": "2020-04-16T18:30:00Z", # Server timestamp is one hour behind ours
     "price": 1,
-  	"description": "for work done on monday night"
+  	"description": "for work done on Thursday night"
 }
 
-token = 'UH80T43UJ67LgWqFkrm0fb1NjVcrG6'
+token = 'CXcx3feNq8U0VHOcLzRqhAP9x9OPqo'
 
 addAuction(auctionItem1, token)
