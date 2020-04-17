@@ -1,12 +1,12 @@
 import requests
 import json
-from getAllItems import getAllItems
-from login import loginUser
+from helpers import getAllItems, loginUser, getItem
+
 
 mary = {'username': 'mary', 'password': 'mary'}
 maryToken = loginUser(mary)
 
-response = getAllItems( maryToken)
+response = getItem(30, maryToken)
 
 myJson = response.text
 parsed = json.loads(myJson)

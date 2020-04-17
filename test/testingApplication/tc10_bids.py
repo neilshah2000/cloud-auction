@@ -1,8 +1,7 @@
 import requests
 import json
-from login import loginUser
-from bid import addBid
-from addItem import addAuctionItem
+from helpers import loginUser, addBid, addAuctionItem
+
 
 # get tokens
 mary = {'username': 'mary', 'password': 'mary'}

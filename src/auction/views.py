@@ -38,19 +38,17 @@ def current_datetime(request):
     return HttpResponse(html)
 
 def getBidsForItem(request, itemId):
-    now = datetime.datetime.now()
-    html = "<html><body>It is now %s.</body></html>" % now
-    print(request.user)
     a = AuctionItem(id=itemId)
-    # b = Bid(amount=500, time="2020-03-13T10:10:00Z", item=a)
-    # b.save()
-    all = Bid.objects.all()
-    myItem = Bid(item=a)
-    # bAll = bids.objects.all()
+    hist = Bid.objects.all().filter(item=a)
+    serializer = BidSerializer(hist, many=True)
+    mJson = JSONRenderer().render(serializer.data)
+    return HttpResponse(mJson)
 
-    some = Bid.objects.all().filter(item=a)
-
-    serializer = BidSerializer(some, many=True)
+@api_view(['GET'])
+@login_required
+def getSoldItems(request):
+    sold = AuctionItem.objects.all().filter(ended=True)
+    serializer = AuctionItemSerializer(sold, many=True)
     json = JSONRenderer().render(serializer.data)
     return HttpResponse(json)
 
