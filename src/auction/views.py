@@ -37,12 +37,17 @@ def current_datetime(request):
     print(request.user)
     return HttpResponse(html)
 
+@api_view(['GET'])
+@login_required
 def getBidsForItem(request, itemId):
     a = AuctionItem(id=itemId)
     hist = Bid.objects.all().filter(item=a)
     serializer = BidSerializer(hist, many=True)
     mJson = JSONRenderer().render(serializer.data)
-    return HttpResponse(mJson)
+    if canViewBids(request):
+        return HttpResponse(mJson)
+    else:
+        return Response({'detail': 'Can not view this item'}, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET'])
 @login_required
@@ -100,3 +105,13 @@ def auctionNotFinished(request):
         now = timezone.now()
         return endDate > now
     return False
+
+# check the user is viewing bids only on their own item
+def canViewBids(request):
+    path = request.path
+    auctionItemId = path.split('/')[-1]
+    try:
+        ai = AuctionItem.objects.get(pk=auctionItemId)
+        return ai.created_by_id == request.user.id
+    except AuctionItem.DoesNotExist:
+        return False
