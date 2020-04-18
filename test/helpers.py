@@ -3,9 +3,12 @@ import json
 from datetime import datetime, timedelta
 
 
+serverUrl = 'http://54.173.178.23:9999/'
+
+
 # User is object like {'username': 'olga', 'password': 'olga'}
 def loginUser(user):
-    url = 'http://172.31.47.107:9999/authentication/token/'
+    url = serverUrl + 'authentication/token/'
     response = requests.post(url, data = user)
     json_response = response.json()
     return json_response['access_token']
@@ -16,42 +19,42 @@ def addBid(auctionId, amount, token):
         "amount": amount,
         "item": auctionId
     }
-    url = 'http://172.31.47.107:9999/auction/bid/'
+    url = serverUrl + 'auction/bid/'
     headers = {'Authorization': 'Bearer ' + token}
     response = requests.post(url, headers=headers, data = bid)
     return response
 
 
 def getBids(auctionItemId, token):
-    url = 'http://172.31.47.107:9999/auction/auctionItem/' + str(auctionItemId) + '/bids/'
+    url = serverUrl + 'auction/auctionItem/' + str(auctionItemId) + '/bids/'
     headers = {'Authorization': 'Bearer ' + token}
     response = requests.get(url, headers=headers)
     return response
 
 
 def getItem(itemId, token):
-    url = 'http://172.31.47.107:9999/auction/auctionItem/' + str(itemId)
+    url = serverUrl + 'auction/auctionItem/' + str(itemId)
     headers = {'Authorization': 'Bearer ' + token}
     response = requests.get(url, headers=headers)
     return response
 
 
 def getAllItems(token):
-    url = 'http://172.31.47.107:9999/auction/auctionItem/'
+    url = serverUrl + 'auction/auctionItem/'
     headers = {'Authorization': 'Bearer ' + token}
     response = requests.get(url, headers=headers)
     return response
 
 
 def getAllAvailableItems(token):
-    url = 'http://172.31.47.107:9999/auction/auctionItem/available/'
+    url = serverUrl + 'auction/auctionItem/available/'
     headers = {'Authorization': 'Bearer ' + token}
     response = requests.get(url, headers=headers)
     return response
 
 
 def getSoldItems(token):
-    url = 'http://172.31.47.107:9999/auction/auctionItem/sold/'
+    url = serverUrl + 'auction/auctionItem/sold/'
     headers = {'Authorization': 'Bearer ' + token}
     response = requests.get(url, headers=headers)
     return response
@@ -59,7 +62,7 @@ def getSoldItems(token):
 
 def addAuctionItem(title, description, endsIn, token):
     auctionItem = createAuctionItemObject(title, description, endsIn)
-    url = 'http://172.31.47.107:9999/auction/auctionItem/'
+    url = serverUrl + 'auction/auctionItem/'
     headers = {'Authorization': 'Bearer ' + token}
     response = requests.post(url, headers=headers, data = auctionItem)
     return response
