@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'rest_framework', # The REST API
     'background_task',
     'users',
-    'movies',
     'auction',
 ]
 

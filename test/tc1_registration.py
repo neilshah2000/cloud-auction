@@ -15,6 +15,3 @@ users = [
 
 for user in users:
     createUser(user)
-
-client_id = 'UjHGNXR1QL1xcz1hqzWDpQYZnjbRT5KJX96t4xQL'
-client_secret = 'NIEapuwf7PX0qF5B8laufp60CAQHI0KWW6wsywKjnh9Xb5qyLKTPzGoLzk4bcFD46HCnm3MlVWi4tN5pKeFip33qtXpiVATcIDfM1ScUEv4LbG4s2dQZBMkeYQ43QqZL'

@@ -12,39 +12,46 @@ def loginUser(user):
 
 
 def addBid(auctionId, amount, token):
-    auctionItem = {
+    bid = {
         "amount": amount,
         "item": auctionId
     }
-    url = 'http://172.31.47.107:9999/newAuction/bid/add/'
+    url = 'http://172.31.47.107:9999/auction/bid/'
     headers = {'Authorization': 'Bearer ' + token}
-    response = requests.post(url, headers=headers, data = auctionItem)
+    response = requests.post(url, headers=headers, data = bid)
     return response
 
 
 def getBids(auctionItemId, token):
-    url = 'http://172.31.47.107:9999/newAuction/getBidsForItem/' + str(auctionItemId)
+    url = 'http://172.31.47.107:9999/auction/auctionItem/' + str(auctionItemId) + '/bids/'
     headers = {'Authorization': 'Bearer ' + token}
     response = requests.get(url, headers=headers)
     return response
 
 
 def getItem(itemId, token):
-    url = 'http://172.31.47.107:9999/v1/auctionItem/' + str(itemId)
+    url = 'http://172.31.47.107:9999/auction/auctionItem/' + str(itemId)
     headers = {'Authorization': 'Bearer ' + token}
     response = requests.get(url, headers=headers)
     return response
 
 
 def getAllItems(token):
-    url = 'http://172.31.47.107:9999/v1/auctionItem/'
+    url = 'http://172.31.47.107:9999/auction/auctionItem/'
+    headers = {'Authorization': 'Bearer ' + token}
+    response = requests.get(url, headers=headers)
+    return response
+
+
+def getAllAvailableItems(token):
+    url = 'http://172.31.47.107:9999/auction/auctionItem/available/'
     headers = {'Authorization': 'Bearer ' + token}
     response = requests.get(url, headers=headers)
     return response
 
 
 def getSoldItems(token):
-    url = 'http://172.31.47.107:9999/newAuction/auction/sold/'
+    url = 'http://172.31.47.107:9999/auction/auctionItem/sold/'
     headers = {'Authorization': 'Bearer ' + token}
     response = requests.get(url, headers=headers)
     return response
@@ -52,7 +59,7 @@ def getSoldItems(token):
 
 def addAuctionItem(title, description, endsIn, token):
     auctionItem = createAuctionItemObject(title, description, endsIn)
-    url = 'http://172.31.47.107:9999/newAuction/auction/add/'
+    url = 'http://172.31.47.107:9999/auction/auctionItem/'
     headers = {'Authorization': 'Bearer ' + token}
     response = requests.post(url, headers=headers, data = auctionItem)
     return response

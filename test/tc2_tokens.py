@@ -1,6 +1,6 @@
 import requests
 import json
-from login import loginUser
+from helpers import loginUser
 
 users = [
     {'username': 'olga', 'password': 'olga'},

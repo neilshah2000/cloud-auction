@@ -1,7 +1,0 @@
-POST http://172.31.47.107:9999/authentication/token/
-Content-Type: application/json
-
-{
-    "username": "mary",
-    "password": "mary"
-}

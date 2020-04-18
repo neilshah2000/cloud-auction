@@ -1,7 +1,6 @@
 import requests
 import json
-from login import loginUser
-from addItem import addAuctionItem
+from helpers import loginUser, addAuctionItem
 from datetime import datetime, timedelta
 
 mary = {'username': 'mary', 'password': 'mary'}
