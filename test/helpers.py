@@ -70,7 +70,7 @@ def addAuctionItem(title, description, endsIn, token):
 # helper method to create object the way the back end likes
 def createAuctionItemObject(title, description, endsIn):
     endtime = datetime.now() + timedelta(minutes=endsIn)
-    # endtime = endtime - timedelta(minutes=60) # Server timestamp is one hour behind ours
+    endtime = endtime - timedelta(minutes=60) # Server timestamp is one hour behind ours
     myAuctionItem = {
         "title": title,
         "endDate": endtime.isoformat(),

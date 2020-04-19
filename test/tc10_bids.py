@@ -14,7 +14,7 @@ nick = {'username': 'nick', 'password': 'nick'}
 nickToken = loginUser(nick)
 
 # mary creates item
-minutesToEnd = 1
+minutesToEnd = 3
 maryAddItemResponse = addAuctionItem('new item', 'item description', minutesToEnd, maryToken)
 maryAddItemId = maryAddItemResponse.json()['id']
 
