@@ -78,27 +78,29 @@ that.
 **Posting a Bid
 
 Login
-POST http://54.173.178.23:9999/authentication/token/ {'username': 'mary', 'password': 'mary'}
-POST http://54.173.178.23:9999/authentication/token/ {'username': 'olga', 'password': 'olga'}
+POST http://54.173.178.23:9999/authentication/token/ 
+  {'username': 'mary', 'password': 'mary'}
+POST http://54.173.178.23:9999/authentication/token/ 
+  {'username': 'olga', 'password': 'olga'}
 
 Create Auction
 POST http://54.173.178.23:9999/auction/auctionItem/
 Authorization: Bearer m28FwpnCkzGmxTv5UiusqsAcga4QRo
-```{
-"title": "new item",
-"description": "item description",
-"price": 1.0,
-"endDate": "2020-04-19T12:03:34.910369Z"
-"condition": "Used"
-}```
+  {
+    "title": "new item",
+    "description": "item description",
+    "price": 1.0,
+    "endDate": "2020-04-19T12:03:34.910369Z"
+    "condition": "Used"
+  }
 
 Bid
 POST http://54.173.178.23:9999/auction/bid/
 Authorization: Bearer m28FwpnCkzGmxTv5UiusqsAcga4QRo
-```{
-"amount": 70.0,
-"item": 20
-}```
+  {
+    "amount": 70.0,
+    "item": 20
+  }
 
 **Database Schema
 
