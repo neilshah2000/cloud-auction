@@ -78,12 +78,14 @@ that.
 **Posting a Bid**
 
 Login
+
 POST http://54.173.178.23:9999/authentication/token/ 
   {'username': 'mary', 'password': 'mary'}
 POST http://54.173.178.23:9999/authentication/token/ 
   {'username': 'olga', 'password': 'olga'}
 
 Create Auction
+
 POST http://54.173.178.23:9999/auction/auctionItem/
 Authorization: Bearer m28FwpnCkzGmxTv5UiusqsAcga4QRo
   {
@@ -95,6 +97,7 @@ Authorization: Bearer m28FwpnCkzGmxTv5UiusqsAcga4QRo
   }
 
 Bid
+
 POST http://54.173.178.23:9999/auction/bid/
 Authorization: Bearer m28FwpnCkzGmxTv5UiusqsAcga4QRo
   {
@@ -139,8 +142,14 @@ time. This functionality needs to be made more useful.
 **References**
 
 https://docs.djangoproject.com/en/dev/ref/models/fields/#field-choices-enum-types
+
 https://www.django-rest-framework.org/api-guide/viewsets/
+
 https://docs.djangoproject.com/en/3.0/ref/applications/
+
 https://django-background-tasks.readthedocs.io/en/latest/
+
 https://www.django-rest-framework.org/api-guide/routers/
+
 https://www.django-rest-framework.org/api-guide/serializers/
+
