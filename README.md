@@ -26,6 +26,7 @@ myself without a partner. First we will discuss project structure and how I inst
 framework. I will describe the REST endpoints with an example of how they are used. Then I will
 describe the database model and application implementation.
 
+
 **Directory Structure**
 
 The src/auction directory provides the main app functionality of storing auctions and allowing
@@ -42,17 +43,20 @@ which provide python methods that encapsulate the endpoints.
 More details can be found in the GitHub repository
 https://github.com/neilshah2000/cloud-auction
 
+
 **Framework**
 
 The application framework is Django and uses OAuth2TokenMiddleware and
 CurrentRequestUserMiddleware to authenticate and store users. It also used the
 django-background-tasks library to schedule jobs for ending auctions.
 
+
 **Installation**
 
 The application is hosted on an AWS instance of Ubuntu Server 18.04 LTS. It is t2.medium
 build with 2 cores and 4GB of RAM.
 The API root can be accessed here http://54.173.178.23:9999/auction/
+
 
 **Authentication**
 
@@ -61,6 +65,7 @@ for authentication is handed over to the users service. We create an application
 with a secret token and register it with the service. When our auction app wants to interact with
 the authentication service it presents the secret token for the app plus whatever credentials the
 user has supplied, and returns an access token the user can reuse for the rest of their session.
+
 
 **REST API**
 
@@ -74,6 +79,7 @@ that.
 - getAllAvailableItems = [GET] auction/auctionItem/available/
 - getSoldItems = [GET] auction/auctionItem/sold/
 - addAuctionItem = [POST] auction/auctionItem/
+
 
 **Posting a Bid**
 
@@ -105,6 +111,7 @@ Authorization: Bearer m28FwpnCkzGmxTv5UiusqsAcga4QRo
     "item": 20
   }
 
+
 **Database Schema**
 
 ***Auction Item***
@@ -126,6 +133,7 @@ time: DateTime
 item: FK(Auction)
 created_by: FK(User)
 
+
 **Implementation**
 
 I use the ModelViewSet to create the views I pass into the router. This gives me prebuilt CRUD
@@ -138,6 +146,7 @@ store the winning price.
 The auction create endpoint requires a start time. This is UTC time format and hard for the user
 to enter. There is also a timezone difference between the server and user which affects start
 time. This functionality needs to be made more useful.
+
 
 **References**
 
