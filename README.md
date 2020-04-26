@@ -19,14 +19,6 @@ when changing models:
 
 
 
-**Introduction**
-
-This write up provides a brief explanation of the auction app i have built. It was created by
-myself without a partner. First we will discuss project structure and how I installed the
-framework. I will describe the REST endpoints with an example of how they are used. Then I will
-describe the database model and application implementation.
-
-
 **Directory Structure**
 
 The src/auction directory provides the main app functionality of storing auctions and allowing
