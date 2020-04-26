@@ -117,21 +117,34 @@ Authorization: Bearer m28FwpnCkzGmxTv5UiusqsAcga4QRo
 ***Auction Item***
 
 title: String
+
 description: String
+
 condition: Enum
+
 models: Float
+
 endDate: DateTime
+
 ended: Boolean
+
 winner: FK(User)
+
 created_by: FK(User)
+
 created_at: DateTime
+
 
 ***Bid***
 
 amount: Float
+
 time: DateTime
+
 item: FK(Auction)
+
 created_by: FK(User)
+
 
 
 **Implementation**
