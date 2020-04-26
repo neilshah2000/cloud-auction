@@ -19,14 +19,14 @@ when changing models:
 
 
 
-**Introduction
+**Introduction**
 
 This write up provides a brief explanation of the auction app i have built. It was created by
 myself without a partner. First we will discuss project structure and how I installed the
 framework. I will describe the REST endpoints with an example of how they are used. Then I will
 describe the database model and application implementation.
 
-**Directory Structure
+**Directory Structure**
 
 The src/auction directory provides the main app functionality of storing auctions and allowing
 users to bid on them. Most of the app functionality is provided through four files: views.py,
@@ -42,19 +42,19 @@ which provide python methods that encapsulate the endpoints.
 More details can be found in the GitHub repository
 https://github.com/neilshah2000/cloud-auction
 
-**Framework
+**Framework**
 
 The application framework is Django and uses OAuth2TokenMiddleware and
 CurrentRequestUserMiddleware to authenticate and store users. It also used the
 django-background-tasks library to schedule jobs for ending auctions.
 
-**Installation
+**Installation**
 
 The application is hosted on an AWS instance of Ubuntu Server 18.04 LTS. It is t2.medium
 build with 2 cores and 4GB of RAM.
 The API root can be accessed here http://54.173.178.23:9999/auction/
 
-**Authentication
+**Authentication**
 
 Authentication is provided by the OAuth2TokenMiddleware, a Django plugin. The responsibility
 for authentication is handed over to the users service. We create an application configuration
@@ -62,7 +62,7 @@ with a secret token and register it with the service. When our auction app wants
 the authentication service it presents the secret token for the app plus whatever credentials the
 user has supplied, and returns an access token the user can reuse for the rest of their session.
 
-**REST API
+**REST API**
 
 The top level server domain url is 'http://54.173.178.23:9999/'. Endpoints below are relative to
 that.
@@ -75,7 +75,7 @@ that.
 - getSoldItems = [GET] auction/auctionItem/sold/
 - addAuctionItem = [POST] auction/auctionItem/
 
-**Posting a Bid
+**Posting a Bid**
 
 Login
 POST http://54.173.178.23:9999/authentication/token/ 
@@ -102,9 +102,9 @@ Authorization: Bearer m28FwpnCkzGmxTv5UiusqsAcga4QRo
     "item": 20
   }
 
-**Database Schema
+**Database Schema**
 
-***Auction Item
+***Auction Item***
 
 title: String
 description: String
@@ -116,14 +116,14 @@ winner: FK(User)
 created_by: FK(User)
 created_at: DateTime
 
-***Bid
+***Bid***
 
 amount: Float
 time: DateTime
 item: FK(Auction)
 created_by: FK(User)
 
-**Implementation
+**Implementation**
 
 I use the ModelViewSet to create the views I pass into the router. This gives me prebuilt CRUD
 methods which I extend to create more functionality for my endpoints. When an auction is
@@ -136,7 +136,7 @@ The auction create endpoint requires a start time. This is UTC time format and h
 to enter. There is also a timezone difference between the server and user which affects start
 time. This functionality needs to be made more useful.
 
-**References
+**References**
 
 https://docs.djangoproject.com/en/dev/ref/models/fields/#field-choices-enum-types
 https://www.django-rest-framework.org/api-guide/viewsets/
